@@ -1,0 +1,20 @@
+        {% extends "product/base.html" %}
+       
+       {% block content %}
+       
+       <div class="row justify-content-center">
+        <a href="{% url 'dashboard' %}" class=" btn btn-outline-primary my-3 mx-4">Go Back</a>
+           <div class="col-12 col-md-6 mt-5">       
+               <form method="post" class="col-sm-11 col-md-4 mx-auto mt-5">
+                   {% csrf_token %}
+                   <h1 class="fw-light">Are you sure you want to delete {{ item.name}}?</h1>
+                   <p class="fw-light">This can't be undone</p>                  
+                   <div class="mt-3">
+                       <button class="btn btn-danger" >
+                           Delete
+                       </button>
+                   </div>
+               </form>
+           </div>
+       </div>
+       {% endblock content %}

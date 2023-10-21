@@ -1,0 +1,13 @@
+{% extends "product/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6 mt-5">
+        <h1>You Have Been Logged Out</h1>
+
+        <div class="pt-3">
+            <small class="text-muted"> <a href="{% url 'login' %}" class="ml-2">Log In Again </a></small>
+        </div>
+    </div>
+</div>
+{% endblock content %}

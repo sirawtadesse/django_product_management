@@ -1,0 +1,77 @@
+{% extends "product/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% if messages %}
+        <div class="row mt-3">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="col-md-10 col-12 mx-auto alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="col-md-10 col-12 mx-auto alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mt-5">
+
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'add-item' %}" class="btn btn-primary"> +</a>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Product_name</th>
+                        <th scope="col">Product_description</th>
+                        <th scope="col">Product_price</th>
+                        <th scope="col">product_quantity_in_stock</th>
+                        <th scope="col"></th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if items|length == 0 %}
+                        <tr>
+                            <th scope="row">-</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    {% endif %}
+
+                    {% for item in items %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.price }}</td>
+                            {% if item.id in low_product_ids %}
+                                {% if item.quantity_in_stock == 0 %}
+                                    <td class="text-danger">Out of Stock</td>
+                                {% else %}
+                                    <td class="text-danger">{{ item.quantity_in_stock }}</td>
+                                {% endif %}
+                            {% else %}
+                                <td class="text-success">{{ item.quantity_in_stock }}</td>
+                            {% endif %}
+                            <td><a href="{% url 'edit-item' item.id %}" class="btn btn-outline-secondary">Edit</a></td>
+                            <td><a href="{% url 'delete-item' item.id %}" class="btn btn-outline-secondary">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
