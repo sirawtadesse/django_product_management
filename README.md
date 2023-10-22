@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 
 # django_product_management project
@@ -45,3 +46,5 @@ A product management system is a software application or platform that helps bus
  # 4
  
  ![Alt text](Capture4.PNG)
+=======
+>>>>>>> 7799b399a9cfbccc421b8e3d0464ad45a26b79c6
